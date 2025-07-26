@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { Link, useNavigate } from "react-router-dom"
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import { login } from "../../../Services/operations/authAPI"
 
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -29,7 +31,7 @@ function LoginForm() {
   
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(login(email, password, navigate))
+    dispatch(login(email, password, navigate, token));
   }
 
   return (
@@ -88,7 +90,7 @@ function LoginForm() {
       </label>
       <button
         type="submit"
-        className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+        className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 cursor-pointer"
       >
         Sign In
       </button>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -8,6 +9,7 @@ import Navbar from './components/Common/Navbar'
 import ForgotPassword from './pages/ForgotPassword'
 import UpdatePassword from './pages/UpdatePassword'
 import VerifyEmail from './pages/VerifyEmail'
+import AboutUs from './pages/AboutUs'
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
       <Route path="forgot-password" element={<ForgotPassword />} />
       <Route path="update-password/:token" element={<UpdatePassword />} />
       <Route path="verify-email" element={<VerifyEmail />} />
+      <Route path="about" element={<AboutUs />} />
+
 
     </Routes>
     </div>

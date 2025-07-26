@@ -2,6 +2,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import {setLoading, setToken} from "../../Slices/authSlice"
 import { apiConnector } from '../apiConnector';
 import { endpoint } from '../apis';
+import { setUser } from '../../Slices/profileSlice';
 
 const {RESETPASSWORD_TOKEN, RESETPASSWORD_API ,SIGNUP_API, LOGIN_API, OTP_API} = endpoint;
 
@@ -95,4 +96,56 @@ export function sendOTP(email, navigate){
         }
         dispatch(setLoading(false));
     }
-}
+};
+
+export function login(email, password, navigate, token){
+    return async(dispatch) => {
+        dispatch(setLoading(true));
+        try {
+            const response = await apiConnector("POST", LOGIN_API, {email, password});
+            console.log("API response: ", response);
+
+             if(!response.data || !response.data.success){
+                const errorMessage = response.data?.message || "Login failed: No specific message from server.";
+                throw new Error(errorMessage);
+            }
+
+            toast.success("User Logged-in Successfully!");
+            const token = response.data.token;
+            dispatch(setToken(token));
+            
+           const userImage = response.data?.user?.image
+            ? response.data.user.image
+            : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
+            dispatch(setUser({...response.data.user, image: userImage}));
+
+
+            localStorage.setItem("token", JSON.stringify(response.data.token));
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            
+            navigate("/dashboard");
+
+        } catch (error) {
+            console.log("Error while login: ", error);
+            toast.error(error.response.data.message);
+        }
+        dispatch(setLoading(false));
+    }
+};
+
+export function logout(navigate){
+    return async (dispatch) => {
+        try {
+        dispatch(setToken(null))
+        dispatch(setUser(null))
+        // dispatch(resetCart())
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        toast.success("Logged-out successfully");
+        navigate("/");
+    } catch (error) {
+        console.log("error while loggingout: ", error);
+        toast.error("Failed to logout");
+    }
+    }
+};

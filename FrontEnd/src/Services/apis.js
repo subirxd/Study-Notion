@@ -12,3 +12,7 @@ export const endpoint = {
     OTP_API: BASE_URL+"/auth/send-otp",
     CHANGEPASSWORD_API : BASE_URL+"/auth/change-password",
 }
+
+export const contactUS = {
+    CONTACTUS_API : BASE_URL + "/contactus/contact",
+}
