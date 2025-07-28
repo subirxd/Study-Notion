@@ -103,7 +103,7 @@ export function login(email, password, navigate, token){
         dispatch(setLoading(true));
         try {
             const response = await apiConnector("POST", LOGIN_API, {email, password});
-            console.log("API response: ", response);
+
 
              if(!response.data || !response.data.success){
                 const errorMessage = response.data?.message || "Login failed: No specific message from server.";
@@ -123,7 +123,7 @@ export function login(email, password, navigate, token){
             localStorage.setItem("token", JSON.stringify(response.data.token));
             localStorage.setItem("user", JSON.stringify(response.data.user));
             
-            navigate("/dashboard");
+            navigate("dashboard/my-profile");
 
         } catch (error) {
             console.log("Error while login: ", error);
@@ -138,7 +138,6 @@ export function logout(navigate){
         try {
         dispatch(setToken(null))
         dispatch(setUser(null))
-        // dispatch(resetCart())
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         toast.success("Logged-out successfully");

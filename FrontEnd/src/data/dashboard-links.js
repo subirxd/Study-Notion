@@ -1,5 +1,5 @@
 import { ACCOUNT_TYPE } from "../utils/constants";
-export const sidebarLinks = [
+export const dashboardLinks = [
   {
     id: 1,
     name: "My Profile",

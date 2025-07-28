@@ -8,6 +8,7 @@ import Quote from '../components/core/AboutPage/Quote'
 import StatsComponent from '../components/core/AboutPage/Stats'
 import LearningGrid from '../components/core/AboutPage/LearningGrid'
 import ContactForm from '../components/core/AboutPage/ContactForm'
+import Footer from '../components/Common/Footer'
 
 function AboutUs() {
   return (
@@ -117,6 +118,11 @@ function AboutUs() {
             <LearningGrid />
             <ContactForm />
         </section>
+
+        {/* section 6 */}
+        <div>
+            <Footer />
+        </div>
     </div>
   )
 }

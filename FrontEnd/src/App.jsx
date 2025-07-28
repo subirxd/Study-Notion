@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
+import { ACCOUNT_TYPE } from './utils/constants'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -10,6 +11,12 @@ import ForgotPassword from './pages/ForgotPassword'
 import UpdatePassword from './pages/UpdatePassword'
 import VerifyEmail from './pages/VerifyEmail'
 import AboutUs from './pages/AboutUs'
+import ContactUS from './pages/ContactUS'
+import Dashboard from './pages/Dashboard'
+import MyProfile from './components/core/Dashboard/MyProfile'
+import PrivateRoute from './components/core/Auth/PrivateRoute'
+import OpenRoute from './components/core/Auth/OpenRoute'
+import Error from './pages/Error'
 
 function App() {
 
@@ -18,13 +25,25 @@ function App() {
     <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path ="signup" element ={<SignUp />} />
-      <Route path="login" element={<Login />} />
-      <Route path="forgot-password" element={<ForgotPassword />} />
-      <Route path="update-password/:token" element={<UpdatePassword />} />
-      <Route path="verify-email" element={<VerifyEmail />} />
-      <Route path="about" element={<AboutUs />} />
+      <Route path ="signup" element ={<OpenRoute> <SignUp /> </OpenRoute>} />
+      <Route path="login" element={<OpenRoute>  <Login /> </OpenRoute>} />
+      <Route path="forgot-password" element={<OpenRoute> <ForgotPassword />  </OpenRoute>} />
+      <Route path="update-password/:token" element={<OpenRoute> <UpdatePassword /> </OpenRoute>} />
+      <Route path="verify-email" element={<OpenRoute> <VerifyEmail /> </OpenRoute>} />
 
+      <Route path="about" element={<AboutUs />} />
+      <Route path="contact" element={<ContactUS />} />
+
+      <Route element={<PrivateRoute> <Dashboard /> </PrivateRoute>}>
+      
+      <Route path='dashboard/my-profile' element={<MyProfile />} />
+
+
+      </Route>
+      
+      
+      
+      <Route path="*" element={<Error />} />
 
     </Routes>
     </div>
