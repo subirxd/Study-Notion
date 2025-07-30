@@ -16,3 +16,12 @@ export const endpoint = {
 export const contactUS = {
     CONTACTUS_API : BASE_URL + "/contactus/contact",
 }
+
+export const Profile_Endpoints = {
+    USER_DETAILS_API : BASE_URL + "/profile/getUserDetails",
+    UPDATE_PROFILE_API : BASE_URL + "/profile/updateProfile",
+    UPDATE_DISPLAY_PICTURE_API : BASE_URL + "/profile/updateDisplayPicture",
+    DELETE_PROFILE_API: BASE_URL + "/profile/deleteProfile",
+    ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
+    INSTRUCTOR_DASHBOARD_API: BASE_URL + "/profile/getInstructorDashboardDetails"
+}
