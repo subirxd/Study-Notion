@@ -228,7 +228,8 @@ export async function login(req, res){
 export async function changePassword(req, res){
     try {
         //get data from req body
-        const {email, oldPassword, newPassword, confirmNewPassword} = req.body;
+        const {oldPassword, newPassword, confirmNewPassword} = req.body;
+        const {email} = req.user;
 
         //validation
         if(!email || !oldPassword || !newPassword || !confirmNewPassword){

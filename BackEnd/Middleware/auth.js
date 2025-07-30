@@ -49,7 +49,8 @@ export async function auth(req, res, next){
 export async function isStudent(req, res, next){
     try {
         //validate data
-        if (req.user.accountType !== "Student") {
+
+        if (req.user.accountType !== "student") {
         return res.status(401).json({
             success: false,
             message: "Protected route for students only."

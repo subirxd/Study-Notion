@@ -25,7 +25,7 @@ router.delete("/deleteProfile", auth, isStudent,  deleteProfile);        // Dele
 
 // -------------------- COURSE PROGRESS -------------------- //
 
-router.get("/getEnrolledCourses", auth, getEnrolledCourse);  // Get all enrolled courses for student
+router.get("/getEnrolledCourses", auth, isStudent,  getEnrolledCourse);  // Get all enrolled courses for student
 
 // -------------------- INSTRUCTOR DASHBOARD -------------------- //
 

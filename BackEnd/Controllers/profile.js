@@ -8,7 +8,7 @@ export async function updateProfile(req, res) {
     try {
         
         //fetch data and userId ->> using userId fetch profileID
-        const{gender, dateOfBirth, about, contactNumber} = req.body;
+        const{gender, dateOfBirth, about, contactNumber, firstName, lastName} = req.body;
         const userId = req.user.id;
         //validate data
         if(!gender || !dateOfBirth){
@@ -28,14 +28,21 @@ export async function updateProfile(req, res) {
         profileDetails.about = about;
         profileDetails.gender = gender;
         if(contactNumber) profileDetails.contactNumber = contactNumber;
+       
 
         //save the details into the DB
         await profileDetails.save();
+         const user = await UserModel.findByIdAndUpdate(userId, {
+            firstName,
+            lastName,
+        }).populate("additionalDetails");
+
+        user.password = undefined;
         //return response
         return res.status(200).json({
             success: true,
             message: "Profile updated successfully.",
-            profileDetails,
+            data: user,
         });
 
     } catch (error) {
@@ -126,7 +133,7 @@ export async function updateDisplayPicture(req, res) {
     try {
         
         const userId = req.user.id;
-        const user = await UserModel.findById(userId);
+        const user = await UserModel.findById(userId).populate("additionalDetails");
 
         if(!user){
             return res.status(404).json({
@@ -153,7 +160,8 @@ export async function updateDisplayPicture(req, res) {
 
         return res.status(200).json({
             success: true,
-            message: "Profile picture updated successfully."
+            message: "Profile picture updated successfully.",
+            data: user
         });
     } catch (error) {
         console.log("Error while changing profile picture:", error);
