@@ -3,3 +3,8 @@ export const ACCOUNT_TYPE = {
   INSTRUCTOR: "instructor",
   ADMIN: "admin",
 }
+
+export const COURSE_STATUS = {
+  DRAFT: "Draft",
+  PUBLISHED: "Published",
+}

@@ -34,6 +34,7 @@ export  function getUserEnrolledCourses(){
 export function changeProfilePicture(file, setfile){
     return async (dispatch) => {
         const toasId = toast.loading("Uploading...");
+
         try {
             const formData = new FormData();
             formData.append("displayPicture", file);
@@ -45,7 +46,7 @@ export function changeProfilePicture(file, setfile){
             }
 
             localStorage.setItem("user", JSON.stringify(response.data.data));
-            setUser(localStorage.getItem("user"));
+            dispatch(setUser(JSON.parse(localStorage.getItem("user"))));
 
             setfile(null);
             toast.success("Profile Picture Changed Successfully");
@@ -64,6 +65,7 @@ export function updateProfile(data){
     const toastId = toast.loading("Loading...");
 
     return async (dispatch) => {
+        dispatch(setLoading(true));
         try {
             const response = await apiConnector("PUT", Profile_Endpoints.UPDATE_PROFILE_API, data);
 
@@ -73,6 +75,7 @@ export function updateProfile(data){
 
             localStorage.setItem("user", JSON.stringify(response.data.data));
             dispatch(setUser(response.data.data));
+            console.log(response.data.data);
 
             toast.success("Profile Updated Successfully");
 
@@ -80,9 +83,10 @@ export function updateProfile(data){
         } catch (error) {
             //console.log("Error updating profile: ", error);
             toast.error("Failed to upload profile details");
+        } finally{
+            dispatch(setLoading(false));
+            toast.dismiss(toastId);
         }
-
-        toast.dismiss(toastId);
     }
 };
 

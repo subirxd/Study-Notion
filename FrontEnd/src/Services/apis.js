@@ -25,3 +25,25 @@ export const Profile_Endpoints = {
     ENROLLED_COURSES_API: BASE_URL + "/profile/getEnrolledCourses",
     INSTRUCTOR_DASHBOARD_API: BASE_URL + "/profile/getInstructorDashboardDetails"
 }
+
+export const course_Endpoints = {
+    INSTRUCTOR_COURSES : BASE_URL + "/course/getInstructorCourses",
+    DELETE_COURSE: BASE_URL + "/course/deleteCourse",
+    CREATE_COURSE: BASE_URL + "/course/createCourse",
+    GET_ALL_COURSE:BASE_URL +  "/course/getAllCourses",
+    EDIT_COURSE: BASE_URL + "/course/editCourse",
+    GET_COURSE_DETAILS: BASE_URL + "/course/getCourseDetails",
+    GET_FULL_COURSE_DETAILS: BASE_URL + "/course/getFullCourseDetails",
+    SEARCH_COURSE : BASE_URL + "/course/searchCourse",
+    UPDATE_COURSE_PROGRESS: BASE_URL + "/course/updateCourseProgress",
+    ADD_SECTION: BASE_URL + "/course/addSection",
+    UPDATE_SECTION: BASE_URL + "/course/addSection",
+    DELETE_SECTION: BASE_URL + `/course/deleteSection`,
+    ADD_SUB_SECTION: BASE_URL + "/course/addSubsection",
+    UPDATE_SUB_SECTION: BASE_URL + "/course/updateSubSection",
+    DELETE_SUB_SECTION: BASE_URL + "/course/deleteSubSection",
+    SHOW_ALL_CATEGORY: BASE_URL + "/course/showAllCategories",
+    GET_CATEGORYPAGE_DETAILS: BASE_URL + "course/getCategoryPageDetails",
+    ADD_COURSE_TO_CATEGORY: BASE_URL + "/course/addCourseToCategory",
+
+}

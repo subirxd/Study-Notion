@@ -35,7 +35,7 @@ export async function updateProfile(req, res) {
          const user = await UserModel.findByIdAndUpdate(userId, {
             firstName,
             lastName,
-        }).populate("additionalDetails");
+        }, {new: true, runValidators: true}).populate("additionalDetails");
 
         user.password = undefined;
         //return response
@@ -156,7 +156,8 @@ export async function updateDisplayPicture(req, res) {
         const uploadedDetails = await uploadImageToCloudinary(profilePic, process.env.FOLDER_NAME);
         console.log("Came back from uplaod");
         user.image = uploadedDetails.secure_url;
-        user.save();
+        await user.save();
+        user.password = undefined;
 
         return res.status(200).json({
             success: true,

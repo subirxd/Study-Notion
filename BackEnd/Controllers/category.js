@@ -170,7 +170,7 @@ export async function addCourseToCategory(req, res) {
 
   } catch (error) {
       console.log("Error while adding course to category section: ", error);
-      return res.status(500).json({  // ✅ fix spelling of status
+      return res.status(500).json({
         success: false,
         message: "Something went wrong, please try again later."
       });

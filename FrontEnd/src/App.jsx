@@ -22,6 +22,8 @@ import Error from './pages/Error'
 import EnrolledCourse from './components/core/Dashboard/EnrolledCourse'
 import Cart from "./components/core/Dashboard/Cart/index"
 import Settings from "./components/core/Dashboard/Settings/Index"
+import MyCourses from './components/core/Dashboard/InstructorCourse/MyCourses'
+import AddCourse from "./components/core/Dashboard/AddCourse/index"
 
 function App() {
     const dispatch = useDispatch();
@@ -54,6 +56,15 @@ function App() {
           <>
             <Route path="dashboard/enrolled-courses" element={<EnrolledCourse />} />
             <Route path="dashboard/cart" element={<Cart />} />
+          </>
+        )
+      }
+
+      {
+        user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+          <>
+            <Route path="dashboard/my-courses" element ={<MyCourses />} /> 
+            <Route path="dashboard/add-course" element ={<AddCourse />} /> 
           </>
         )
       }
