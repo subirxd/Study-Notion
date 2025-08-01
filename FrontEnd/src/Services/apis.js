@@ -45,5 +45,6 @@ export const course_Endpoints = {
     SHOW_ALL_CATEGORY: BASE_URL + "/course/showAllCategories",
     GET_CATEGORYPAGE_DETAILS: BASE_URL + "course/getCategoryPageDetails",
     ADD_COURSE_TO_CATEGORY: BASE_URL + "/course/addCourseToCategory",
+    CREATE_RATING: BASE_URL + "/course/createRating"
 
 }

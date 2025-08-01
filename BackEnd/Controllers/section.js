@@ -46,6 +46,7 @@ export async function createSection(req, res) {
             success: true,
             message: "Section created and course updated successfully.",
             data: updatedCourse,
+            section: newSection,
             });
     } catch (error) {
             console.log("Error while creating section: ", error);

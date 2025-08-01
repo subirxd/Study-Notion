@@ -209,7 +209,7 @@ export async function editCourse(req, res) {
     try {
         
         const {courseId} = req.body || req.param;
-        const updates = req.body;
+        const {updates} = req.body;
         const course = await CourseModel.findById(courseId)
   
         if (!course) {
